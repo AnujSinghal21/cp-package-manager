@@ -1,6 +1,11 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <unistd.h>
+#include <cstdlib>
+#include <limits.h>
+#include "include/util.hpp"
+#include "include/cfserver.hpp"
 using namespace std;
 
 int print_doc(){
@@ -14,6 +19,8 @@ int print_doc(){
     cout << "  test <filename> [-b]    Run the file on test cases" << endl;
     cout << "  start <filename/link>   Create new file by name/codeforces link" << endl;
     cout << "  deploy <filename> [-b]  Submit the file" << endl;
+    cout << "  publish                 Publish the library" << endl;    
+    cout << "  update                  Update the local copy of library from github" << endl;
     cout << "  --help, -h              Display this help message" << endl;
     return 0;
 }
@@ -29,7 +36,7 @@ int main(int argc, char *argv[]) {
         return 0;
     } else if (argc == 2 && args[1] == "cfserver"){
         // start the server
-        return 0;
+        return startCfServer();
     } else if (argc == 3 && args[1] == "build"){
         // build the file in arg[2]
         return 0;
@@ -56,6 +63,12 @@ int main(int argc, char *argv[]) {
             // build the file in arg[2] before submitting
         }
         // submit the file in arg[2] if it is a codeforces problem
+    } else if (argc == 2 && args[1] == "publish") {
+        // publish the library
+        return 0;
+    } else if (argc == 2 && args[1] == "update") {
+        // update the library
+        return 0;
     }
 
     cout << "Invalid usage. Please refer to below usage instructions:" << endl;
