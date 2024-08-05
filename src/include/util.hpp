@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <unistd.h>
+#include <cstdlib>
 #include <limits.h>
 using namespace std;
 

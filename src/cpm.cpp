@@ -6,6 +6,7 @@
 #include <limits.h>
 #include "include/util.hpp"
 #include "include/cfserver.hpp"
+#include "include/init.hpp"
 using namespace std;
 
 int print_doc(){
@@ -33,7 +34,7 @@ int main(int argc, char *argv[]) {
         return print_doc();
     } else if (argc == 3 && args[1] == "init"){
         // use arg[2] as the project name
-        return 0;
+        return initializeProject(args[2]);
     } else if (argc == 2 && args[1] == "cfserver"){
         // start the server
         return startCfServer();
