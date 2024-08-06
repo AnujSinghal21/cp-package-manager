@@ -11,6 +11,7 @@
 #include "include/deploy.hpp"
 #include "include/run.hpp"
 #include "include/test.hpp"
+#include "include/build.hpp"
 using namespace std;
 
 int print_doc(){
@@ -44,16 +45,18 @@ int main(int argc, char *argv[]) {
         return startCfServer();
     } else if (argc == 3 && args[1] == "build"){
         // build the file in arg[2]
-        return 0;
+        return buildCode(args[2]);
     } else if (argc >= 3 && args[1] == "run"){
         if (argc == 4 && (args[3] == "-b" || args[3] == "--build")){
             // build the file in arg[2] before running
+            buildCode(args[2]);
         }
         // run the file in arg[2]
         return runCode(args[2]);
     }else if (argc >= 3 && args[1] == "test") {
         if (argc == 4 && (args[3] == "-b" || args[3] == "--build")){
-                // build the file in arg[2] before running
+            // build the file in arg[2] before running
+            buildCode(args[2]);
         }
         // run the file in arg[2] on test cases file
         return testCode(args[2]);
