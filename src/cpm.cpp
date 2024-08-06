@@ -7,6 +7,7 @@
 #include "include/util.hpp"
 #include "include/cfserver.hpp"
 #include "include/init.hpp"
+#include "include/start.hpp"
 using namespace std;
 
 int print_doc(){
@@ -48,8 +49,38 @@ int main(int argc, char *argv[]) {
         // run the file in arg[2]
         return 0;
     }else if (argc >= 3 && args[1] == "test") {
-        if (argc == 4 && (args[3] == "-b" || args[3] == "--build")) {
-            // build the file in arg[2] before running
+        int f_build = 0;
+        int f_interactive = 0;
+        int f_invalid = 1;
+        if (argc == 4){
+            if (args[3] == "-b" || args[3] == "--build"){
+                f_build = 1;
+                f_invalid = 0;
+            } else if (args[3] == "-i" || args[3] == "--interactive"){
+                f_interactive = 1;
+                f_invalid = 0;
+            }
+        } else if (argc == 5){
+            if ((args[3] == "-b" || args[3] == "--build") && (args[4] == "-i" || args[4] == "--interactive")){
+                f_build = 1;
+                f_interactive = 1;
+                f_invalid = 0;
+            }else if ((args[3] == "-i" || args[3] == "--interactive") && (args[4] == "-b" || args[4] == "--build")){
+                f_build = 1;
+                f_interactive = 1;
+                f_invalid = 0;
+            }
+        }
+        if (!f_invalid){
+            if (f_build){
+                // build the file in arg[2] before running
+            }
+            if (f_interactive){
+                // run the file in arg[2] on interactive test cases
+            } else {
+                // run the file in arg[2] on test cases file
+            }
+            return 0;
         }
         // run the file in arg[2] on test cases file
     } else if (argc == 4 && args[1] == "install"){
@@ -58,17 +89,20 @@ int main(int argc, char *argv[]) {
     } else if (argc == 3 && args[1] == "start") {
         // if a filename is given then create a new file with that name
         // else if cf problem link is given then create a new file with the problem name and fetch test cases
-        return 0;
+        return startSolving(args[2]);
     } else if (argc >= 3 && args[1] == "deploy") {
         if (argc == 4 && (args[3] == "-b" || args[3] == "--build")){
             // build the file in arg[2] before submitting
         }
         // submit the file in arg[2] if it is a codeforces problem
-    } else if (argc == 2 && args[1] == "publish") {
-        // publish the library
+    } else if (argc >= 2 && args[1] == "publish") {
+        // publish the library locally
+        if (argc == 3 && (args[2] == "-r" || args[2] == "--remote")) {
+            // publish the library on remote repository 
+        }
         return 0;
     } else if (argc == 2 && args[1] == "update") {
-        // update the library
+        // update the library from remote repository
         return 0;
     }
 

@@ -22,3 +22,18 @@ string getCurrentWorkingDirectory() {
         return "";
     }
 }
+
+vector<string> splitString(string s, char delim) {
+    vector<string> parts;
+    string part = "";
+    for (char c : s) {
+        if (c == delim) {
+            parts.push_back(part);
+            part = "";
+        } else {
+            part += c;
+        }
+    }
+    parts.push_back(part);
+    return parts;
+}
