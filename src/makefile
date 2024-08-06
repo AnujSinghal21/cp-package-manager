@@ -1,9 +1,9 @@
 CC = "g++"
 CFLAGS = "-Wall"
 
-all: cpm.cpp util.o cfserver.o init.o start.o deploy.o run.o test.o build.o
+all: cpm.cpp util.o cfserver.o init.o start.o deploy.o run.o test.o build.o clean.o update.o
 	mkdir -p ./../bin
-	g++ -o ./../bin/cpm cpm.cpp ./include/util.o ./include/cfserver.o ./include/init.o ./include/start.o ./include/deploy.o ./include/run.o ./include/test.o ./include/build.o
+	g++ -o ./../bin/cpm cpm.cpp ./include/util.o ./include/cfserver.o ./include/init.o ./include/start.o ./include/deploy.o ./include/run.o ./include/test.o ./include/build.o ./include/clean.o ./include/update.o
 
 util.o: include/util.cpp include/util.hpp
 	g++ -c ./include/util.cpp -o ./include/util.o
@@ -28,6 +28,12 @@ test.o: include/test.cpp include/test.hpp
 
 build.o: include/build.cpp include/build.hpp
 	g++ -c ./include/build.cpp -o ./include/build.o
+
+clean.o: include/clean.cpp include/clean.hpp
+	g++ -c ./include/clean.cpp -o ./include/clean.o
+
+update.o: include/update.cpp include/update.hpp
+	g++ -c ./include/update.cpp -o ./include/update.o
 
 clean:
 	rm -f cpm

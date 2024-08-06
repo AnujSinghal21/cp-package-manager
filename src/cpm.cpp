@@ -12,6 +12,8 @@
 #include "include/run.hpp"
 #include "include/test.hpp"
 #include "include/build.hpp"
+#include "include/clean.hpp"
+#include "include/update.hpp"
 using namespace std;
 
 int print_doc(){
@@ -25,7 +27,7 @@ int print_doc(){
     cout << "  test <filename> [-b]    Run the file on test cases" << endl;
     cout << "  start <filename/link>   Create new file by name/codeforces link" << endl;
     cout << "  deploy <filename> [-b]  Submit the file" << endl;
-    cout << "  publish                 Publish the library" << endl;    
+    cout << "  publish <message> [-r]  Publish the library" << endl;
     cout << "  update                  Update the local copy of library from github" << endl;
     cout << "  --help, -h              Display this help message" << endl;
     return 0;
@@ -73,14 +75,24 @@ int main(int argc, char *argv[]) {
         }
         // submit the file in arg[2] if it is a codeforces problem
         return submitCode(args[2]);
-    } else if (argc >= 2 && args[1] == "publish") {
-        // publish the library locally
-        if (argc == 3 && (args[2] == "-r" || args[2] == "--remote")) {
+    } else if (argc >= 3 && args[1] == "publish") {
+        string message = "Update library";
+        if (argc == 4 && (args[2] == "-r" || args[2] == "--remote")) {
             // publish the library on remote repository 
+            message = args[3];
+            publishUpdatedLib(message, true);
+        }else {
+            // publish the library locally
+            message = args[2];
+            publishUpdatedLib(message, false);
         }
         return 0;
     } else if (argc == 2 && args[1] == "update") {
         // update the library from remote repository
+        return 0;
+    } else if (argc == 2 && args[1] == "clean") {
+        // run all the test cases
+        cleanProject();
         return 0;
     }
 
