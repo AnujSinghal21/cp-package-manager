@@ -15,7 +15,7 @@ def handle_request():
     parts = url.split("/")
     if len(parts) < 6:
         return jsonify({"message": "Data received"}), 200
-    if parts[3] != "contest":
+    if parts[3] == "contest":
         question = "C" + parts[-3] + parts[-1]
     else:
         question = "P" + parts[-2] + parts[-1]
