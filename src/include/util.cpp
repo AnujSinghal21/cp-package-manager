@@ -37,3 +37,28 @@ vector<string> splitString(string s, char delim) {
     parts.push_back(part);
     return parts;
 }
+
+string getFileNameFromLink(string url){
+    string fileName = "code.cpp";
+    vector<string> parts = splitString(url, '/');
+    if (parts.size() < 6) {
+        return fileName;
+    }
+    if (parts[3] == "problemset") {
+        fileName = "P" + parts[5] + parts[6] + ".cpp";
+    } else {
+        fileName = "C" + parts[4] + parts[6] + ".cpp";
+    }
+    return fileName;
+}
+
+bool fileAlreadyExists(string filePath) {
+    // Check if the file exists
+    std::ifstream infile(filePath);
+    if (infile.good()) {
+        // File already exists
+        infile.close();
+        return true;
+    }
+    return false;
+}

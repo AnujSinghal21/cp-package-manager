@@ -25,6 +25,7 @@ def handle_request():
             with open(f"testcases/output_{question}_{i+1}.txt", "w") as f:
                 f.write(testcases[i]['output'])
         os.system(f"cpm start {url}")
+
     print(data)
     return jsonify({"message": "Data received"}), 200
 

@@ -13,5 +13,7 @@ using namespace std;
 string getProgramFilesPath();
 string getCurrentWorkingDirectory();
 vector<string> splitString(string s, char delim);
+string getFileNameFromLink(string url);
+bool fileAlreadyExists(string filePath);
 
 #endif

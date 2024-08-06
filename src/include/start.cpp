@@ -6,16 +6,7 @@ int startSolving(string problem) {
     string url = "https://codeforces.com/problemset/problem/33/A";
     if (problem.substr(0, 8) == "https://") {
         url = problem;
-        vector<string> parts = splitString(url, '/');
-        if (parts.size() < 6) {
-            cout << "Invalid URL" << endl;
-            return 1;
-        }
-        if (parts[3] == "problemset") {
-            fileName = "P" + parts[5] + parts[6] + ".cpp";
-        } else {
-            fileName = "C" + parts[4] + parts[6] + ".cpp";
-        }
+        fileName = getFileNameFromLink(problem);
     } else {
         vector<string> extension = splitString(problem, '.');
         if (extension[extension.size()-1] != "cpp" ){
@@ -24,6 +15,11 @@ int startSolving(string problem) {
             fileName = problem;
         }
     }
+    if (fileAlreadyExists(fileName)) {
+        cout << "File already exists" << endl;
+        return 1;
+    }
+
     ofstream file(fileName);
     ifstream my_template("lib/template.cpp");
     file << "// Question: " << url << endl;

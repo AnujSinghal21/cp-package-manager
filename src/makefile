@@ -1,8 +1,8 @@
 CC = "g++"
 CFLAGS = "-Wall"
 
-all: cpm.cpp util.o cfserver.o init.o start.o
-	g++ -o ./../bin/cpm cpm.cpp ./include/util.o ./include/cfserver.o ./include/init.o ./include/start.o
+all: cpm.cpp util.o cfserver.o init.o start.o deploy.o run.o test.o
+	g++ -o ./../bin/cpm cpm.cpp ./include/util.o ./include/cfserver.o ./include/init.o ./include/start.o ./include/deploy.o ./include/run.o ./include/test.o
 
 util.o: include/util.cpp include/util.hpp
 	g++ -c ./include/util.cpp -o ./include/util.o
@@ -15,6 +15,15 @@ init.o: include/init.cpp include/init.hpp
 
 start.o: include/start.cpp include/start.hpp
 	g++ -c ./include/start.cpp -o ./include/start.o
+
+deploy.o: include/deploy.cpp include/deploy.hpp
+	g++ -c ./include/deploy.cpp -o ./include/deploy.o
+
+run.o: include/run.cpp include/run.hpp
+	g++ -c ./include/run.cpp -o ./include/run.o
+
+test.o: include/test.cpp include/test.hpp
+	g++ -c ./include/test.cpp -o ./include/test.o
 
 clean:
 	rm -f cpm

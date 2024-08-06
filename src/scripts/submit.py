@@ -1,7 +1,8 @@
 import pyperclip
-
+import sys
 import subprocess
-import platform
+
+url = ""
 
 def open_url_in_windows_browser(url):
     try:
@@ -9,11 +10,10 @@ def open_url_in_windows_browser(url):
         subprocess.run(['cmd.exe', '/c', 'start', url], check=True)
         print(f"Opening {url} in your default Windows web browser.")
     except subprocess.CalledProcessError as e:
-        print(f"An error occurred while trying to open the URL: {e}")
+        print(f"An error occurred while trying to open the URL {url}: {e}")
     except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+        print(f"An unexpected error occurred while opening {url}: {e}")
 
-url = ""
 def copy_file_to_clipboard(file_path):
     try:
         # Open the file in read mode
@@ -21,6 +21,11 @@ def copy_file_to_clipboard(file_path):
             # Read the content of the file
             file_content = file.read()
         
+        # Copy the content to the clipboard
+        pyperclip.copy(file_content)
+
+        print(f"Content of {file_path} copied to the clipboard.")
+
         line1 = file_content.split('\n')[0]
         if line1.startswith("// Question: "):
             global url
@@ -35,18 +40,16 @@ def copy_file_to_clipboard(file_path):
             elif problemUrl.startswith("https://codeforces.com/problemset/problem/"):
                 parts = problemUrl.split("/")
                 url = f"https://codeforces.com/problemset/submit"
-
-        # Copy the content to the clipboard
-        pyperclip.copy(file_content)
-    
     except FileNotFoundError:
         print("Error: The file does not exist.")
     except Exception as e:
         print(f"An error occurred: {e}")
 
-# Replace 'your_file.txt' with the path to your file
-file_path = 's.cpp'
-copy_file_to_clipboard(file_path)
 
-open_url_in_windows_browser(url)
-
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        sys.exit(1)
+    fileName = sys.argv[1]
+    copy_file_to_clipboard(fileName)
+    if url != "":
+        open_url_in_windows_browser(url)
