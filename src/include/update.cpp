@@ -12,7 +12,7 @@ int publishUpdatedLib(string commitMessage, bool remote){
         chdir(projectPath.c_str());
         system("git add .");
         system(("git commit -m \"" + commitMessage + "\"").c_str());
-        system("git push origin master");
+        system("git push origin main");
     }
     return 0;
 }
