@@ -19,17 +19,17 @@ using namespace std;
 int print_doc(){
     cout << "Usage: cpm [command] [options]" << endl;
     cout << "Commands:" << endl;
-    cout << "  init <project_name>     Create a new project" << endl;
-    cout << "  cfserver                Start the codeforces server" << endl;
-    cout << "  build <filename>        Build the file" << endl;
-    cout << "  install <filename> <package_name>  Install the library file" << endl;
-    cout << "  run <filename> [-b]     Run the file" << endl;
-    cout << "  test <filename> [-b]    Run the file on test cases" << endl;
-    cout << "  start <filename/link>   Create new file by name/codeforces link" << endl;
-    cout << "  deploy <filename> [-b]  Submit the file" << endl;
-    cout << "  publish <message> [-r]  Publish the library" << endl;
-    cout << "  update                  Update the local copy of library from github" << endl;
-    cout << "  --help, -h              Display this help message" << endl;
+    cout << "  init <project_name>                  Create a new project" << endl;
+    cout << "  cfserver                             Start the codeforces server" << endl;
+    cout << "  build <filename>                     Build the file" << endl;
+    cout << "  install <filename> <package_name>    Install the library file" << endl;
+    cout << "  run <filename> [-b]                  Run the file" << endl;
+    cout << "  test <filename> [-b]                 Run the file on test cases" << endl;
+    cout << "  start <filename/link>                Create new file by name/codeforces link" << endl;
+    cout << "  deploy <filename> [-b]               Submit the file" << endl;
+    cout << "  publish <message> [-r]               Publish the library" << endl;
+    cout << "  update                               Update the local copy of library from github" << endl;
+    cout << "  --help, -h                           Display this help message" << endl;
     return 0;
 }
 
@@ -89,7 +89,7 @@ int main(int argc, char *argv[]) {
         return 0;
     } else if (argc == 2 && args[1] == "update") {
         // update the library from remote repository
-        return 0;
+        return pullUpdatedLib();
     } else if (argc == 2 && args[1] == "clean") {
         // run all the test cases
         cleanProject();

@@ -3,5 +3,6 @@
 #include "util.hpp"
 
 int publishUpdatedLib(string commitMessage, bool remote);
+int pullUpdatedLib();
 
 #endif

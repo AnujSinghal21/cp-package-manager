@@ -1,7 +1,7 @@
 #include "update.hpp"
 
 int publishUpdatedLib(string commitMessage, bool remote){
-    cout << "Updating the local library..." << endl;
+    cout << "Publishing the local library..." << endl;
     string projectPath = getProgramFilesPath();
     string libPath = projectPath + "/lib";
     string newLib = "lib";
@@ -14,5 +14,18 @@ int publishUpdatedLib(string commitMessage, bool remote){
         system(("git commit -m \"" + commitMessage + "\"").c_str());
         system("git push origin main");
     }
+    return 0;
+}
+
+int pullUpdatedLib(){
+    cout << "Pulling the updated library from the remote repository..." << endl;
+    string cwd = getCurrentWorkingDirectory();
+    string projectPath = getProgramFilesPath();
+    chdir(projectPath.c_str());
+    system("git pull");
+    chdir(cwd.c_str());
+    system("rm -r lib");
+    system(("cp -r \"" + projectPath + "/lib\" .").c_str());
+    cout << "Library updated successfully" << endl;
     return 0;
 }
