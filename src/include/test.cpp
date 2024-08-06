@@ -91,7 +91,7 @@ int testCode(string fileName) {
         }
     }
     if (passed == testcases.size()) {
-        cout << "\033[32mAll test cases passed\033[0m" << endl;
+        cout << "\033[32mAll test cases passed!\033[0m" << endl;
     }
 
     return 0;
