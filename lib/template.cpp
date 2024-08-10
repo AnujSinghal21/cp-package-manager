@@ -1,16 +1,18 @@
-#include <bits/stdc++.h>
-using namespace std;
-typedef long long ll;
+#ifdef LOCAL
+#include "./lib/cpmlib.hpp"
+#define MULTIPLE_TESTS
+#define USE_LL
+//#define INTERACTIVE
+//#define BUILD_SIMPLE
+#endif
 
-int solve(){
+int solve(int testCaseNumber){
+    int n, x, k;
+    string s;
     return 0;
 }
 
-int main(){
-    int testcases = 1;
-    cin >> testcases;
-    while(testcases--){
-        solve();
-    }
+int init(){
+
     return 0;
 }
