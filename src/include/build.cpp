@@ -64,6 +64,9 @@ vector<string> getLibraryCodeToInclude(set<string> &usedTokens, set<string> &def
 }
 
 int buildCode(string fileName){
+    if (fileName.substr(fileName.find_last_of(".") + 1) != "cpp"){
+        fileName += ".cpp";
+    }
     string buildFileName = "build_" + fileName;
     ofstream buildFile(buildFileName);
     ifstream codeFile(fileName);
@@ -71,6 +74,10 @@ int buildCode(string fileName){
     deque<string> finalLines;
     for (string line; getline(codeFile, line);){
         lines.push_back(line);
+    }
+    if (lines.size() <= 1){
+        cout << "Error: Empty file" << endl;
+        return 1;
     }
 
     // extract the flags and tokens

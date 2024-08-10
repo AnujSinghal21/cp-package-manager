@@ -47,6 +47,12 @@ vector<testcase> getTestCases(vector<string>& filenames, string text) {
 
 int testCode(string fileName) {
     // find test cases;
+    if (fileName.substr(fileName.find_last_of(".") + 1) != "cpp") {
+        fileName += ".cpp";
+    }
+    if (fileName.substr(0, 6) != "build_") {
+        fileName = "build_" + fileName;
+    }
     string question = splitString(fileName, '.')[0];
     if (question.substr(0, 6) == "build_") {
         question = question.substr(6);
