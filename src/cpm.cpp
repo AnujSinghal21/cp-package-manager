@@ -12,6 +12,7 @@
 #include "include/run.hpp"
 #include "include/test.hpp"
 #include "include/build.hpp"
+#include "include/install.hpp"
 #include "include/clean.hpp"
 #include "include/update.hpp"
 using namespace std;
@@ -64,7 +65,7 @@ int main(int argc, char *argv[]) {
         return testCode(args[2]);
     } else if (argc == 4 && args[1] == "install"){
         //install the package arg[3] in the arg[2] file
-        return 0;
+        return installLibCode(args[2], args[3]);
     } else if (argc == 3 && args[1] == "start") {
         // if a filename is given then create a new file with that name
         // else if cf problem link is given then create a new file with the problem name and fetch test cases

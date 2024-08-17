@@ -62,3 +62,27 @@ bool fileAlreadyExists(string filePath) {
     }
     return false;
 }
+
+map<string, LibInfo> readLibraries() {
+    ifstream confFile("lib/config.csv");
+    string line;
+    map<string, LibInfo> libInfoMap;
+    int line0 = 0;
+    while (getline(confFile, line)) {
+        if (line0 == 0) {
+            line0 = 1;
+            continue;
+        }
+        vector<string> parts = splitString(line, ',');
+        string libName = parts[0];
+        string libFileName = parts[1];
+        string define = parts[2];
+        vector<string> dependencies;
+        for (int i = 3; i < parts.size(); i++) {
+            dependencies.push_back(parts[i]);
+        }
+        libInfoMap[libName] = LibInfo(libName, libFileName, define, dependencies);
+        libInfoMap[define] = LibInfo(libName, libFileName, define, dependencies);
+    }
+    return libInfoMap;
+}

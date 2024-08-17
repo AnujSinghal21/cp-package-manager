@@ -26,7 +26,7 @@ void setFlags(vector<string> & lines){
 
 vector<string> getIdentifiers(string& line){
     vector<string> identifiers;
-    set<char> delimiters = {' ', '(', ')', '{', '}', ';', ',', '=', '+', '-', '*', '/', '%', '<', '>', '&', '|', '^', '~', '!', '?', ':', '[', ']', '.', '#'};
+    set<char> delimiters = {' ', '(', ')', '{', '}', ';', ',', '=', '+', '-', '*', '/', '%', '<', '>', '&', '|', '^', '~', '!', '?', ':', '[', ']', '.', '#', '\r', '\n', '\t'};
     string actualLine = line.substr(0, line.find("//"));
     string identifier = "";
     for (char c : actualLine){
@@ -38,6 +38,9 @@ vector<string> getIdentifiers(string& line){
         }else{
             identifier += c;
         }
+    }
+    if (identifier != ""){
+        identifiers.push_back(identifier);
     }
     return identifiers;
 }
@@ -60,7 +63,39 @@ void extractTokens(vector<string> &lines, set<string> &usedTokens, set<string> &
 }
 
 vector<string> getLibraryCodeToInclude(set<string> &usedTokens, set<string> &definedTokens){
-    return {};
+    map<string, LibInfo> libInfoMap = readLibraries();
+    set<string> librariesToInclude;
+    for (string token : usedTokens){
+        string defToken = libInfoMap[token].define;
+        if (defToken == ""){
+            continue;
+        }
+        if (definedTokens.find(defToken) != definedTokens.end()){
+            continue;
+        }
+        if (libInfoMap[token].libFileName != ""){
+            librariesToInclude.insert(defToken);
+            for (string dependency : libInfoMap[defToken].dependencies){
+                if (definedTokens.find(dependency) != definedTokens.end()){
+                    continue;
+                }
+                librariesToInclude.insert(dependency);
+            }
+        }
+    }
+    cout << "Libraries to include: " << endl;
+    for (auto l: librariesToInclude){
+        cout << l << endl;
+    }
+    vector<string> codeToInclude;
+    for (string libName : librariesToInclude){
+        LibInfo libInfo = libInfoMap[libName];
+        vector<string> code = libInfo.getCode();
+        for (string codeLine : code){
+            codeToInclude.push_back(codeLine);
+        }
+    }
+    return codeToInclude;
 }
 
 int buildCode(string fileName){
@@ -109,8 +144,8 @@ int buildCode(string fileName){
     }
     if (!F_BUILD_SIMPLE){
         vector<string> libraryCode = getLibraryCodeToInclude(usedTokens, definedTokens);
-        for (string line : libraryCode){
-            finalLines.push_front(line);
+        for (int i = libraryCode.size() - 1; i >= 0; i--){
+            finalLines.push_front(libraryCode[i]);
         }
     }
     if (F_USE_LL){
