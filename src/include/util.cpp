@@ -63,6 +63,16 @@ bool fileAlreadyExists(string filePath) {
     return false;
 }
 
+string cleanSpaces(string s){
+    string result = "";
+    for (char c : s){
+        if (c != ' ' && c != '\t' && c != '\n' && c != '\r'){
+            result += c;
+        }
+    }
+    return result;
+}
+
 map<string, LibInfo> readLibraries() {
     ifstream confFile("lib/config.csv");
     string line;
@@ -74,6 +84,9 @@ map<string, LibInfo> readLibraries() {
             continue;
         }
         vector<string> parts = splitString(line, ',');
+        for (int i = 0; i < parts.size(); i++) {
+            parts[i] = cleanSpaces(parts[i]);
+        }
         string libName = parts[0];
         string libFileName = parts[1];
         string define = parts[2];

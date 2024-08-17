@@ -83,9 +83,12 @@ vector<string> getLibraryCodeToInclude(set<string> &usedTokens, set<string> &def
             }
         }
     }
-    cout << "Libraries to include: " << endl;
-    for (auto l: librariesToInclude){
-        cout << l << endl;
+    if (librariesToInclude.size() != 0){
+        cout << "Including libraries: ";
+        for (auto l: librariesToInclude){
+            cout << l << ", ";
+        }
+        cout << endl;
     }
     vector<string> codeToInclude;
     for (string libName : librariesToInclude){
