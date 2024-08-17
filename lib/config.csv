@@ -3,3 +3,5 @@ mod,general/constants.cpp,CPM_CONSTANTS
 mx5,general/constants.cpp,CPM_CONSTANTS
 mx6,general/constants.cpp,CPM_CONSTANTS
 mx7,general/constants.cpp,CPM_CONSTANTS
+inf,general/constants.cpp,CPM_CONSTANTS
+eps,general/constants.cpp,CPM_CONSTANTS
