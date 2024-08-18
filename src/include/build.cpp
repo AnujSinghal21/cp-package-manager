@@ -169,6 +169,11 @@ int buildCode(string fileName){
         finalLines.push_back("    for(int i = 0; i < testcases; i++){");
         finalLines.push_back("        solve(i);");
         finalLines.push_back("    }");
+    }else{
+        finalLines.push_back("    int testcases = 1;");
+        finalLines.push_back("    for(int i = 0; i < testcases; i++){");
+        finalLines.push_back("        solve(i);");
+        finalLines.push_back("    }");
     }
     finalLines.push_back("    return 0;");
     finalLines.push_back("}");
