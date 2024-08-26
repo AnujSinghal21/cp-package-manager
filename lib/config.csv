@@ -6,3 +6,6 @@ mx7,general/constants.cpp,CPM_CONSTANTS
 inf,general/constants.cpp,CPM_CONSTANTS
 eps,general/constants.cpp,CPM_CONSTANTS
 rep,general/macros.cpp,CPM_MACROS
+yeah,general/macros.cpp,CPM_MACROS
+nope,general/macros.cpp,CPM_MACROS
+print,general/io.cpp,CPM_IO
