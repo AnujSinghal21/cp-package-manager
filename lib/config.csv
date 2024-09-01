@@ -13,3 +13,5 @@ bit_string,bitwise/bstring.cpp,CPM_BITSTRING
 get_vec,general/io.cpp,CPM_IO
 input,general/io.cpp,CPM_IO
 all,general/macros.cpp,CPM_MACROS
+ll,general/macros.cpp,CPM_MACROS
+OrderedSet,pbds/orderedset.cpp,CPM_ORDERED_SET

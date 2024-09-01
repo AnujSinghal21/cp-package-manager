@@ -4,3 +4,4 @@
 #define yeah cout << "YES\n";
 #define nope cout << "NO\n";
 #define all(v) v.begin(), v.end()
+using ll = long long;
