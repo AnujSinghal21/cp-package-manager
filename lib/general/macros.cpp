@@ -5,3 +5,7 @@
 #define nope cout << "NO\n";
 #define all(v) v.begin(), v.end()
 using ll = long long;
+using vi = vector<int>;
+using vpi = vector<pair<int, int> >;
+using vvi = vector<vector<int> >;
+using pi = pair<int, int>;

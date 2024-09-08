@@ -2,12 +2,12 @@
 #define CPM_LIB
 #include <bits/stdc++.h>
 using namespace std;
-#include "./inc/general/io.hpp"
-#include "./inc/general/constants.hpp"
-#include "./inc/general/macros.hpp"
+#include "./inc/general.hpp"
 
-#include "./inc/bitwise/bstring.hpp"
+#include "./inc/bitwise.hpp"
 
-#include "./inc/pbds/orderedset.hpp"
+#include "./inc/algorithms.hpp"
+
+#include "./inc/pbds.hpp"
 
 #endif

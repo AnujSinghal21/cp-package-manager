@@ -15,3 +15,4 @@ input,general/io.cpp,CPM_IO
 all,general/macros.cpp,CPM_MACROS
 ll,general/macros.cpp,CPM_MACROS
 OrderedSet,pbds/orderedset.cpp,CPM_ORDERED_SET
+PreSums,algorithms/prefixSums.cpp,CPM_PREFIXSUM
