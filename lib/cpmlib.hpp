@@ -10,4 +10,6 @@ using namespace std;
 
 #include "./inc/pbds.hpp"
 
+#include "./inc/debug.hpp"
+
 #endif

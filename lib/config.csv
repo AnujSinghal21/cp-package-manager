@@ -4,10 +4,16 @@ mx5,general/constants.cpp,CPM_CONSTANTS
 mx6,general/constants.cpp,CPM_CONSTANTS
 mx7,general/constants.cpp,CPM_CONSTANTS
 inf,general/constants.cpp,CPM_CONSTANTS
+linf,general/constants.cpp,CPM_CONSTANTS
 eps,general/constants.cpp,CPM_CONSTANTS
 rep,general/macros.cpp,CPM_MACROS
+repd,general/macros.cpp,CPM_MACROS
 yeah,general/macros.cpp,CPM_MACROS
 nope,general/macros.cpp,CPM_MACROS
+vi,general/macros.cpp,CPM_MACROS
+vvi,general/macros.cpp,CPM_MACROS
+vpi,general/macros.cpp,CPM_MACROS
+pi,general/macros.cpp,CPM_MACROS
 print,general/io.cpp,CPM_IO
 bit_string,bitwise/bstring.cpp,CPM_BITSTRING
 get_vec,general/io.cpp,CPM_IO
@@ -16,3 +22,5 @@ all,general/macros.cpp,CPM_MACROS
 ll,general/macros.cpp,CPM_MACROS
 OrderedSet,pbds/orderedset.cpp,CPM_ORDERED_SET
 PreSums,algorithms/prefixSums.cpp,CPM_PREFIXSUM
+dbg_string,debug/print.cpp,CPM_DEBUGPRINT
+debug,debug/print.cpp,CPM_DEBUGPRINT
