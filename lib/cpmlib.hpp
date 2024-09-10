@@ -12,4 +12,6 @@ using namespace std;
 
 #include "./inc/debug.hpp"
 
+#include "./inc/numbertheory.hpp"
+
 #endif

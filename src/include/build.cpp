@@ -1,5 +1,6 @@
 #include "build.hpp"
 #include <deque>
+#include <queue>
 #include <set>
 int F_INTERACTIVE = 0;
 int F_MULTIPLE_TESTS = 0;
@@ -64,7 +65,8 @@ void extractTokens(vector<string> &lines, set<string> &usedTokens, set<string> &
 
 vector<string> getLibraryCodeToInclude(set<string> &usedTokens, set<string> &definedTokens){
     map<string, LibInfo> libInfoMap = readLibraries();
-    set<string> librariesToInclude;
+    queue<string> librariesToInclude;
+    queue<string> dependencies;
     for (string token : usedTokens){
         string defToken = libInfoMap[token].define;
         if (defToken == ""){
@@ -74,29 +76,51 @@ vector<string> getLibraryCodeToInclude(set<string> &usedTokens, set<string> &def
             continue;
         }
         if (libInfoMap[token].libFileName != ""){
-            librariesToInclude.insert(defToken);
+            librariesToInclude.push(defToken);
+            definedTokens.insert(defToken);
             for (string dependency : libInfoMap[defToken].dependencies){
                 if (definedTokens.find(dependency) != definedTokens.end()){
                     continue;
                 }
-                librariesToInclude.insert(dependency);
+                definedTokens.insert(dependency);
+                dependencies.push(dependency);
             }
         }
     }
-    if (librariesToInclude.size() != 0){
-        cout << "Including libraries: ";
-        for (auto l: librariesToInclude){
+    vector<string> codeToInclude;
+    if (dependencies.size() != 0){
+        cout << "Including library dependencies: ";
+        while(!dependencies.empty())
+        {
+            string l = dependencies.front();
+            dependencies.pop();
             cout << l << ", ";
+
+            LibInfo libInfo = libInfoMap[l];
+            vector<string> code = libInfo.getCode();
+            for (string codeLine : code){
+                codeToInclude.push_back(codeLine);
+            }
         }
         cout << endl;
+
     }
-    vector<string> codeToInclude;
-    for (string libName : librariesToInclude){
-        LibInfo libInfo = libInfoMap[libName];
-        vector<string> code = libInfo.getCode();
-        for (string codeLine : code){
-            codeToInclude.push_back(codeLine);
+    if (librariesToInclude.size() != 0){
+        cout << "Including libraries: ";
+        while(!librariesToInclude.empty())
+        {
+            string l = librariesToInclude.front();
+            librariesToInclude.pop();
+            cout << l << ", ";
+
+            LibInfo libInfo = libInfoMap[l];
+            vector<string> code = libInfo.getCode();
+            for (string codeLine : code){
+                codeToInclude.push_back(codeLine);
+            }
         }
+        cout << endl;
+
     }
     return codeToInclude;
 }
