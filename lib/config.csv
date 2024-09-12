@@ -26,3 +26,4 @@ dbg_string,debug/print.cpp,CPM_DEBUGPRINT
 debug,debug/print.cpp,CPM_DEBUGPRINT
 modPow,numbertheory/binexp.cpp,CPM_MODPOW
 modInv,numbertheory/modinverse.cpp,CPM_MODINVERSE,CPM_MODPOW
+Field,numbertheory/field.cpp,CPM_MODFIELD

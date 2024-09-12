@@ -24,3 +24,7 @@ template<typename T> void input(vector<T> &v){
 template<typename T> T input(T &v){
     cin >> v;
 }
+int impos(string msg="-1", string end="\n"){
+    cout << msg << end;
+    return -1;
+}
