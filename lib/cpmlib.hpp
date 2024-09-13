@@ -14,4 +14,6 @@ using namespace std;
 
 #include "./inc/numbertheory.hpp"
 
+#include "./inc/graphs.hpp"
+
 #endif
