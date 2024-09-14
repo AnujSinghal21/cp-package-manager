@@ -6,6 +6,7 @@
 #define yeah cout << "YES\n";
 #define nope cout << "NO\n";
 #define all(v) v.begin(), v.end()
+#define len(v) (int)(v.size())
 using ll = long long;
 using vi = vector<int>;
 using vpi = vector<pair<int, int> >;

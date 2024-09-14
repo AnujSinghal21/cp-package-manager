@@ -29,3 +29,7 @@ modInv,numbertheory/modinverse.cpp,CPM_MODINVERSE,CPM_MODPOW
 Field,numbertheory/field.cpp,CPM_MODFIELD
 CPM_DFS,graphs/dfs.cpp,CPM_DFS
 input_bdtree,graphs/treeInput.cpp,CPM_TREEINPUT
+log_ancestor_tree,graphs/tree_ancestors.cpp,CPM_TREE_ANCESTOR,CPM_MACROS
+kth_ancestor_tree,graphs/tree_ancestors.cpp,CPM_TREE_ANCESTOR,CPM_MACROS
+len,general/macros.cpp,CPM_MACROS
+lowest_common_ancestor,graphs/tree_ancestors.cpp,CPM_TREE_ANCESTOR,CPM_MACROS
